@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>laporan.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left-width: 5px;
+	border-left-style: solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 1em;
+	line-height: 1.357em;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
+/** Theming */
+
+.vscode-light pre {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+	padding: 0 12px;
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+</head>
+<body>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+          ? 'dark'
+          : 'default'
+    });
+  </script>
+<h1 id="laporan-modul-1--perkenalan-laravel">Laporan Modul 1 : Perkenalan Laravel</h1>
+<p><strong>Mata Kuliah :</strong> Workshop Web Lanjut<br>
+<strong>Nama : M.Hafidz Firansyah</strong><br>
+<strong>NIM : 2024573010019</strong><br>
+<strong>Kelas : TI.2C</strong></p>
+<hr>
+<h2 id="abstrak">Abstrak</h2>
+<p>Laporan ini membahas pengenalan dasar mengenai framework Laravel, salah satu framework PHP yang saat ini banyak digunakan dalam pengembangan aplikasi web. Pembahasan meliputi penjelasan tentang apa itu Laravel, komponen utamanya, struktur proyek, serta konsep arsitektur MVC yang menjadi dasar kerjanya. Selain itu, laporan ini juga menyinggung kelebihan dan kekurangan Laravel dari sudut pandang pemula. Tujuan dari laporan ini adalah untuk memberikan pemahaman awal bagi mahasiswa dalam mempelajari Laravel.</p>
+<hr>
+<h2 id="1-pendahuluan">1. Pendahuluan</h2>
+<p>Laravel adalah sebuah kerangka kerja (framework) aplikasi web berbasis bahasa pemrograman PHP yang bersifat sumber terbuka (open-source). Diciptakan oleh Taylor Otwell, Laravel dirancang untuk membuat proses pengembangan aplikasi web menjadi lebih mudah, cepat, dan menyenangkan dengan menyediakan sintaks yang ekspresif dan elegan. Framework ini mengikuti pola arsitektur Model-View-Controller (MVC) yang membantu pengembang memisahkan antara logika aplikasi dan tampilan antarmuka.</p>
+<p><strong>Karakteristik Utama:</strong></p>
+<ul>
+<li><strong>Arsitektur MVC (Model-View-Controller):</strong> Laravel secara fundamental dibangun di atas pola MVC. Ini memisahkan data (Model), antarmuka pengguna (View), dan logika kontrol aplikasi (Controller). Pemisahan ini membuat kode lebih terstruktur, mudah dikelola, dan skalabel.</li>
+<li><strong>Opinionated Framework:</strong> Laravel disebut sebagai opinionated framework, yang berarti ia memiliki &quot;opini&quot; atau cara yang direkomendasikan untuk menyelesaikan suatu tugas. Ia menyediakan konvensi dan struktur bawaan yang kuat, mengarahkan pengembang untuk mengikuti praktik terbaik dalam pengembangan web, yang pada akhirnya mempercepat proses development.</li>
+<li><strong>Ekosistem yang Luas:</strong> Laravel bukan hanya sekadar framework, tetapi sebuah ekosistem lengkap yang mencakup berbagai alat dan paket resmi seperti Laravel Sail (lingkungan development), Laravel Breeze/Jetstream (autentikasi), Laravel Telescope (debugging), dan banyak lagi.</li>
+</ul>
+<p>Laravel cocok digunakan untuk berbagai jenis aplikasi, mulai dari aplikasi sederhana seperti blog atau sistem informasi, hingga aplikasi skala besar seperti e-commerce, sistem perusahaan, dan layanan berbasis API.</p>
+<hr>
+<h2 id="2-komponen-utama-laravel">2. Komponen Utama Laravel</h2>
+<ul>
+<li><strong>Blade (Templating):</strong> Sistem templating bawaan Laravel yang memungkinkan kita menyusun tampilan dengan sintaks sederhana, mendukung layout, komponen, dan integrasi data dari controller.</li>
+<li><strong>Eloquent (ORM):</strong> Object Relational Mapping bawaan Laravel yang memudahkan interaksi dengan database tanpa perlu menulis query SQL mentah.</li>
+<li><strong>Routing:</strong> Sistem yang mengatur arah request dari pengguna menuju controller atau fungsi tertentu. Mendukung middleware, grouping, dan resource route.</li>
+<li><strong>Controllers:</strong> Tempat untuk menulis logika aplikasi yang menghubungkan antara model (data) dan view (tampilan).</li>
+<li><strong>Migrations &amp; Seeders:</strong> Fitur untuk mengatur dan melacak perubahan struktur database, serta menambahkan data awal atau data uji secara otomatis.</li>
+<li><strong>Artisan CLI:</strong> Command-line interface bawaan Laravel untuk mempercepat pembuatan file, menjalankan server, melakukan migrasi, dan banyak lagi.</li>
+<li><strong>Testing (PHPUnit):</strong> Mendukung pengujian otomatis dengan PHPUnit agar aplikasi lebih stabil dan bebas bug.</li>
+</ul>
+<hr>
+<h2 id="3-struktur-folder-project-laravel">3. Struktur Folder Project Laravel</h2>
+<p>Secara umum, struktur project Laravel terdiri dari beberapa folder dan file utama:</p>
+<ul>
+<li><strong>app/</strong> → Berisi logika utama aplikasi, termasuk model, controller, middleware, dan service.</li>
+<li><strong>bootstrap/</strong> → File inisialisasi awal Laravel, termasuk autoloading.</li>
+<li><strong>config/</strong> → Menyimpan file konfigurasi aplikasi (database, mail, cache, dll.).</li>
+<li><strong>database/</strong> → Berisi file migrasi, seeder, dan factory.</li>
+<li><strong>public/</strong> → Root folder yang diakses browser. Berisi <code>index.php</code>, aset publik (CSS, JS, gambar).</li>
+<li><strong>resources/</strong> → Berisi file view (Blade templates), file bahasa (localization), dan resource frontend.</li>
+<li><strong>routes/</strong> → Tempat mendefinisikan routing aplikasi (<code>web.php</code>, <code>api.php</code>, dll.).</li>
+<li><strong>storage/</strong> → Menyimpan file sementara, cache, log, dan upload.</li>
+<li><strong>tests/</strong> → Berisi file untuk unit testing dan feature testing.</li>
+<li><strong>vendor/</strong> → Folder yang dihasilkan Composer, berisi semua dependency Laravel.</li>
+<li><strong>.env</strong> → File konfigurasi environment (database, app key, dsb.).</li>
+<li><strong>artisan</strong> → File CLI untuk menjalankan perintah Laravel.</li>
+</ul>
+<hr>
+<h2 id="4-diagram-mvc-dan-cara-kerjanya">4. Diagram MVC dan Cara Kerjanya</h2>
+<p>Arsitektur MVC (Model-View-Controller) membagi aplikasi menjadi tiga bagian:</p>
+<ul>
+<li><strong>Model</strong> → Bertugas mengelola data dan logika bisnis.</li>
+<li><strong>View</strong> → Bertugas menampilkan data ke pengguna.</li>
+<li><strong>Controller</strong> → Penghubung antara Model dan View.</li>
+</ul>
+<p><strong>Alur kerja sederhananya:</strong></p>
+<ol>
+<li>User mengirim request ke server.</li>
+<li>Request diarahkan melalui <strong>Routing</strong> ke <strong>Controller</strong>.</li>
+<li>Controller mengambil/mengolah data dari <strong>Model</strong>.</li>
+<li>Data tersebut diteruskan ke <strong>View</strong>.</li>
+<li>View menampilkan hasil ke pengguna.</li>
+</ol>
+<p>Contoh ilustrasi gambar (letakkan di <code>laporan1/gambar/mvc.png</code>):</p>
+<p><img src="laporan1/gambar/mvc.png" alt="Diagram MVC"></p>
+<hr>
+<h2 id="5-kelebihan--kekurangan">5. Kelebihan &amp; Kekurangan</h2>
+<p><strong>Kelebihan:</strong></p>
+<ul>
+<li>Fitur bawaan yang lengkap (templating, ORM, migrasi, autentikasi, dsb.).</li>
+<li>Komunitas besar dengan dokumentasi yang sangat baik.</li>
+<li>Arsitektur MVC memudahkan kolaborasi tim dan pemeliharaan kode.</li>
+</ul>
+<p><strong>Kekurangan / Tantangan bagi Pemula:</strong></p>
+<ul>
+<li>Relatif berat dibanding framework minimalis.</li>
+<li>Banyak fitur membuat pemula bisa kebingungan.</li>
+<li>Butuh pemahaman dasar PHP dan OOP sebelum benar-benar efektif.</li>
+</ul>
+<hr>
+<h2 id="7-referensi">7. Referensi</h2>
+<ul>
+<li>https://www.gramedia.com/literasi/laravel/</li>
+<li>https://www.codepolitan.com/blog/pengertian-laravel-kenapa-framework-ini-jadi-favorit-developer-murazs/</li>
+<li>https://www.gamelab.id/news/2706-12-fitur-laravel-framework-php-untuk-membangun-website</li>
+<li>https://bit.telkomuniversity.ac.id/laravel-definisi-fitur-manfaat-cara-kerja-keunggulan-dan-kekurangan/</li>
+<li>https://abdulrahmann.com/2025/03/06/struktur-folder-laravel-12-panduan-lengkap-4/</li>
+<li>https://www.himsiubsitegal.my.id/artikel/memahami-struktur-dasar-proyek-laravel-penjelasan-setiap-folder-dan-file</li>
+<li>https://course-net.com/blog/mvc-pada-framework-laravel/</li>
+<li>https://medium.com/@yogameleniawan/mengenal-konsep-mvc-di-laravel-panduan-lengkap-untuk-pemula-2bc33ed7b66e</li>
+<li>https://kelas.work/blogs/pelajari-berbagai-kelebihan-dan-kekurangan-framework-laravel</li>
+<li>https://baraka.uma.ac.id/kelebihan-dan-kekurangan-framework-php-laravel/</li>
+</ul>
+<hr>
+
+</body>
+</html>
